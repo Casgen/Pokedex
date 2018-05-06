@@ -35,12 +35,16 @@ article {
 #popis {
     width: 40%;
     margin: auto;
+    font-family: IBMPlexSansReg;
+    font-size: 1.5em;
 }
 
-img {
-    height: 200px;
-    width: 200px;
+#obrPokemona {
+    height: 250px;
+    width: 250px;
     margin: auto;
+    border: 1px solid rgba(177, 177, 177, 0.844);
+    border-radius: 20%;
 }
 
 #typySlabiny {
@@ -85,4 +89,9 @@ h3 {
 @font-face {
     font-family: IBMPlexSans;
     src: url('../fonts/ibm/IBMPlexSans-Medium.ttf');
+}
+
+@font-face {
+    font-family: IBMPlexSansReg;
+    src: url('../fonts/ibm/IBMPlexSans-Regular.ttf');
 }
