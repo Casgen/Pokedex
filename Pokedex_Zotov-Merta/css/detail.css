@@ -1,0 +1,88 @@
+header {
+    background-color: rgb(211, 211, 211);
+    background-image: url('../images/bulbasaur.png');
+    height: 300px;
+    margin-top: -20px;
+    padding: 70px;
+    background-size: 300px 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+article {
+    background-image: linear-gradient(90deg, rgb(247, 247, 247), rgb(208, 223, 255), rgb(247, 247, 247));
+    width: 60%;
+    margin: auto;
+    height: 800px;
+}
+
+.strany {
+    background-color: rgb(247, 247, 247);
+    width: 20%;
+    height: 800px;
+}
+
+#obsah {
+    height: 70%;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+#popis {
+    width: 40%;
+    margin: auto;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+}
+
+#typySlabiny {
+    text-align: center;
+    margin: auto;
+}
+
+h3 {
+    text-align: center;
+}
+
+#typy {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.panel.panel-default {
+    margin: auto;
+    border-radius: 20px;
+}
+
+#slabiny {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+#nazevPokemona {
+    font-family: IBMPlexSans;
+    font-variant-caps: all-petite-caps;
+    margin-top: none;
+    margin-bottom: none;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 100px;
+}
+
+@font-face {
+    font-family: IBMPlexSans;
+    src: url('../fonts/ibm/IBMPlexSans-Medium.ttf');
+}

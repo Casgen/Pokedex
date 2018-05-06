@@ -1,0 +1,128 @@
+body {
+    background-image: url("../images/pozadindex.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgb(64, 81, 197);
+}
+
+@keyframes animace {
+    0% {
+        opacity: 0.0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    20% {
+        opacity: 0.2;
+    }
+    30% {
+        opacity: 0.3;
+    }
+    40% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    60% {
+        opacity: 0.6;
+    }
+    70% {
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+div {
+    margin-top: 5%;
+    display: flex;
+    width: 100%;
+}
+
+#prihlas {
+    color: rgb(255, 208, 0);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    text-align: center;
+    font-family: pokeFont;
+}
+
+#logo {
+    width: 40%;
+    height: 50%;
+    margin: auto;
+    animation-name: animace;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+}
+
+#login {
+    width: 25%;
+    background-image: linear-gradient(45deg, rgba(211, 211, 211, 0.7), rgba(200, 200, 200, 0.7));
+    margin-left: 37.5%;
+    margin-right: 37.5%;
+    border-radius: 5px;
+}
+
+form {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 5px;
+}
+
+input[type=submit] {
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgb(0, 102, 255);
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+input[type=text] {
+    border-radius: 3px;
+    border: 1px solid grey;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
+
+input[type=password] {
+    border-radius: 3px;
+    border: 1px solid grey;
+    width: 90%;
+    margin-top: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+label {
+    text-align: center;
+}
+
+@media screen and (max-width: 1452px) {
+    .icons {
+        margin: auto;
+        width: 100%;
+    }
+}
+
+@font-face {
+    font-family: pokeFont;
+    src: url('../fonts/Pokemon/Pokemon Solid.ttf');
+}
