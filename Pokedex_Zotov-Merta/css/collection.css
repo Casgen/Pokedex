@@ -27,28 +27,21 @@ header {
     padding: 25px;
     height: 500px;
     border: none;
-    background-image: url("../images/pokemon-background-art.png");
+    background-image: url("../images/pokedex.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat repeat;
+    border-bottom: 10px solid black;
 }
 
 #zobrazeni {
     display: flex;
     flex-direction: row;
     margin-bottom: 150px;
+    margin-top: 100px;
 }
 
 footer {
     width: 100%;
-}
-
-#pokemonnavigate {
-    background-color: rgb(237, 246, 255);
-    margin-left: auto;
-    margin-right: auto;
-    width: 20%;
-    padding: 20px;
-    height: 30%;
 }
 
 article {
@@ -100,17 +93,9 @@ article {
     text-decoration: none;
 }
 
-div.obrazky a:hover {
+.obrazky:hover {
     text-decoration: none;
 }
-
-div.obrazky a:hover img {
-    width: 210px;
-    height: 210px;
-}
-
-
-/* The Modal (background) */
 
 @font-face {
     font-family: pokeFont;
@@ -135,10 +120,4 @@ div.obrazky a:hover img {
 
 .obrazky {
     margin: auto;
-}
-
-div.card.card-body {
-    height: 40px;
-    padding: 6px;
-    padding-left: 15px;
 }
