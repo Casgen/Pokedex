@@ -25,7 +25,7 @@
         <div class="strany"></div>
         <article>
             <div id="obsah">
-                <img src="../images/bulbasaur.png">
+                <img id="obrPokemona" src="../images/bulbasaur.png">
                 <p id="popis">asdhgjasjdhasdgsagdashjdghsadsad
                     hajskdhkjasdhashdkjashdaskjdhskajdhasjd
                     ashdjksadhkajshdakjsdhaskjdhaskjdkj
