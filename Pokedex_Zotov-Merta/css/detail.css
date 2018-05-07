@@ -9,20 +9,13 @@ header {
 }
 
 article {
-    background-image: linear-gradient(90deg, rgb(247, 247, 247), rgb(208, 223, 255), rgb(247, 247, 247));
-    width: 60%;
+    width: 100%;
     margin: auto;
-    height: 800px;
-}
-
-.strany {
-    background-color: rgb(247, 247, 247);
-    width: 20%;
-    height: 800px;
+    margin-bottom: 150px;
 }
 
 #obsah {
-    height: 70%;
+    height: 80%;
     padding-right: 10%;
     padding-left: 10%;
     padding-top: 10%;
@@ -93,4 +86,13 @@ h3 {
 @font-face {
     font-family: IBMPlexSansReg;
     src: url('../fonts/ibm/IBMPlexSans-Regular.ttf');
+}
+
+@media screen and (max-width:1160px) {
+    #obsah {
+        flex-direction: column;
+    }
+    #popis {
+        margin-top: 40px;
+    }
 }

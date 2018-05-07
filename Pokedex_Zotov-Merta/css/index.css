@@ -54,6 +54,7 @@ div {
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     text-align: center;
     font-family: pokeFont;
+    font-size: 2vw;
 }
 
 #logo {
@@ -77,6 +78,11 @@ form {
     margin: auto;
     margin-top: 10px;
     margin-bottom: 20px;
+    width: 95%;
+}
+
+svg {
+    width: 85%;
 }
 
 input {
