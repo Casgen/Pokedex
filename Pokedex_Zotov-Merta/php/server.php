@@ -1,4 +1,4 @@
 <?php
-    $spojeni = new mysqli("localhost","root","","pokemoni");
+    $spojeni = new mysqli("localhost","root","","pokedex");
     $spojeni->set_charset("utf8");
 ?>

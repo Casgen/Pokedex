@@ -8,6 +8,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../images/ikona.png">
     <link rel="stylesheet" href="../css/createpokemon.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i|IBM+Plex+Sans+Condensed:400,400i|IBM+Plex+Sans:100,100i,400,400i,700,700i|IBM+Plex+Serif:400,400i" rel="stylesheet">
     <title>Vítejte v Pokedexu!</title>
