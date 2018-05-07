@@ -23,6 +23,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
 <?php
         
         include 'server.php';
+        $obrFile="../images/";
         if(isset($_SESSION["id"])){ 
         $jmeno = $_SESSION["jmeno"];
         }
@@ -61,12 +62,15 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
             </div>
         
         <?php        
-        $dotaz = $spojeni->prepare("SELECT id,nazev,obrazek FROM pokemoni");
-                        $dotaz->bind_result($id,$nazev,$obrazek);
+        $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek from pokemoni
+                                    JOIN sbirka ON sbirka.pokemon_id = pokemoni.id
+                                    WHERE sbirka.uzivatel_id = ?");
+                        $dotaz->bind_param("i",$_SESSION["id"] );
+                        $dotaz->bind_result($id, $nazev,$obrazek);
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
-        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>Text</h3></a></div>";
+        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
             }
         echo "</div>";
         ?>
