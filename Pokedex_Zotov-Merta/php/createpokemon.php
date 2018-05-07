@@ -49,7 +49,25 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
     </header>
     <div id="zobrazeni">
         <article class="divy">
-                <form method="post">
+        <?php
+        $dotaz=$spojeni->prepare("INSERT INTO pokemoni (nazev, popis, obrazek)
+        VALUES (?, ?, ?)");
+            $dotaz->bind_param("sss",$_POST["nazev"], $_POST["popis"], $_POST["obrazek"]);
+             $dotaz->execute();
+             $posledni_id = $spojeni->insert_id;
+             $dotaz->close();
+             $dotaz=$spojeni->prepare("INSERT INTO pokemon_typ ( id_pokemona, id_typu)
+              VALUES ( $posledni_id, ?)");
+              $dotaz->bind_param("i",$_POST["typ"]);
+              $dotaz->execute();
+              $dotaz->close();
+              $dotaz=$spojeni->prepare("INSERT INTO slabiny ( id_pokemona, id_slabiny)
+              VALUES ( $posledni_id, ?)");
+              $dotaz->bind_param("i",$_POST["slabost"]);
+              $dotaz->execute();
+              $dotaz->close();
+             ?>
+             <form method="post">
                     <div class="form-group">
                         <label style="margin:auto;">Název Pokémona</label>
                         <input type="text" style="margin:auto;width:40%;" pattern="[A-Za-z]+" maxlength="30" class="form-control" placeholder="Jméno pokémona..." name="nazev" id="" aria-describedby="helpId" placeholder=""><br>
@@ -60,22 +78,34 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                     </div>
                     <div class="form-group">
                       <label style="margin:auto;">Obrázek Pokémona</label>
-                      <input style="margin:auto;width:40%;" type="file" accept=".jpg,.png," class="form-control-file" name="soubor" placeholder="" aria-describedby="fileHelpId">
+                      <input style="margin:auto;width:40%;" type="file" accept=".jpg,.png," class="form-control-file" name="obrazek" placeholder="" aria-describedby="fileHelpId">
                     </div>
                     <div class="form-group">
                       <label style="margin:auto;">Typ Pokémona</label>
                       <select style="width:50%;" multiple class="form-control select" required name="typ">
-                        <option>Typ 1</option>
-                        <option>typ 2</option>
-                        <option>typ 3</option>
+                      <?php
+            $dotaz = $spojeni->prepare("SELECT id,typ FROM typy");
+                        $dotaz->bind_result($id, $typ);
+                        $dotaz->execute();
+             while($dotaz->fetch()){ 
+                 echo "<option value='$id'> $typ</option>";
+             }
+             $dotaz->close();
+            ?>
                       </select>
                     </div>
                     <div class="form-group">
                       <label style="margin:auto;">Slabost Pokémona</label>
                       <select style="width:50%;" multiple class="form-control select" required name="slabost">
-                        <option>Slabost 1</option>
-                        <option>Slabost 2</option>
-                        <option>Slabost 3</option>
+                      <?php
+            $dotaz = $spojeni->prepare("SELECT id, typ FROM typy");
+                        $dotaz->bind_result($id, $typ);
+                        $dotaz->execute();
+             while($dotaz->fetch()){ 
+                 echo "<option value='$id'>$typ</option>";
+             }
+             $dotaz->close();
+            ?>
                       </select>
                     </div>
                     <div class="form-group">
