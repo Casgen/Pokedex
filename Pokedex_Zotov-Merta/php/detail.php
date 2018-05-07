@@ -25,6 +25,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
 </head>
 <?php
         include 'server.php';
+        $obrFile="../images/";
         $dotaz = $spojeni->prepare("SELECT nazev, obrazek, popis FROM pokemoni WHERE pokemoni.id=?");
         $dotaz->bind_param("i", $_GET["id"]);
         $dotaz->bind_result($nazev, $obrazek, $popis);
@@ -38,7 +39,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
         <div class="strany"></div>
         <article>
             <div id="obsah">
-                <img id="obrPokemona" src="<?php echo "$obrazek";?>">
+                <img id="obrPokemona" src="<?php echo "$obrFile$obrazek";?>">
                 <p id="popis"><?php echo "$popis";?></p>
             </div>
             <div id="typySlabiny">
