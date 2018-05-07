@@ -1,5 +1,7 @@
-
-<?php session_start() ?>
+<?php
+session_start();
+if(!isset($_SESSION["id"])) header("Location: ../index.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,9 +63,17 @@
              class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTypy" aria-expanded="false" aria-controls="collapseExample">Typy</button>
             
             <div class="collapse" id="collapseTypy">
-              <div class="card card-body">
-                Typ1
-              </div>
+            <?php
+            $dotaz = $spojeni->prepare("SELECT typ FROM typy");
+                        $dotaz->bind_result($typ);
+                        $dotaz->execute();
+             while($dotaz->fetch()){ 
+                 echo "<div class='card card-body'>
+                 $typ
+               </div>";
+             }
+             $dotaz->close();
+            ?>
             </div>
 
             <!--Slabosti-->
@@ -73,9 +83,17 @@
             </button>
             
             <div class="collapse" id="collapseSlabosti">
-              <div class="card card-body">
-                Slabost 1
-              </div>
+            <?php
+            $dotaz = $spojeni->prepare("SELECT typ FROM typy");
+                        $dotaz->bind_result($typ);
+                        $dotaz->execute();
+             while($dotaz->fetch()){ 
+                 echo "<div class='card card-body'>
+                 $typ
+               </div>";
+             }
+             $dotaz->close();
+            ?>
             </div>
         
         </nav>
@@ -92,9 +110,10 @@
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
-        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>Text</h3></a></div>";
+        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
             }
         echo "</div>";
+        $dotaz->close();
         ?>
         </article>
     </div>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+if(!isset($_SESSION["id"])) header("Location: ../index.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,38 +23,62 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<?php
+        include 'server.php';
+        $dotaz = $spojeni->prepare("SELECT nazev, obrazek, popis FROM pokemoni WHERE pokemoni.id=?");
+        $dotaz->bind_param("i", $_GET["id"]);
+        $dotaz->bind_result($nazev, $obrazek, $popis);
+        $dotaz->execute();
+        $dotaz->fetch();
+        $dotaz->close();
+        ?>
 <body style="background-color:rgb(40, 199, 0)">
-    <header><h1 id="nazevPokemona">Název Pokémona</h1></header>
+    <header><h1 id="nazevPokemona"><?php echo "$nazev";?></h1></header>
     <div style="display:flex;flex-direction:row;" id="prostredek">
         <div class="strany"></div>
         <article>
             <div id="obsah">
-                <img id="obrPokemona" src="../images/bulbasaur.png">
-                <p id="popis">asdhgjasjdhasdgsagdashjdghsadsad
-                    hajskdhkjasdhashdkjashdaskjdhskajdhasjd
-                    ashdjksadhkajshdakjsdhaskjdhaskjdkj
-                    asdhasjdsadnasjdasdsasdsadsdasdsadsasdsa
-                    asdsdasdasdsadsadsad
-                </p>
+                <img id="obrPokemona" src="<?php echo "$obrazek";?>">
+                <p id="popis"><?php echo "$popis";?></p>
             </div>
             <div id="typySlabiny">
                 <h3>Typy</h3>
+                <?php
+                $dotaz = $spojeni->prepare("SELECT typy.typ FROM `typy` 
+                JOIN pokemon_typ on pokemon_typ.id_typu = typy.id
+                WHERE pokemon_typ.id_pokemona = ?");
+                $dotaz->bind_param("i", $_GET["id"]);
+                $dotaz->bind_result($typ);
+                $dotaz->execute();
+                ?>
                     <div id="typy">
-                        <div class="panel panel-default">
-                            <div class="panel-body">Typ 1</div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body">typ 2</div>
-                        </div>
+                    <?php
+                    while($dotaz->fetch()){ 
+                        echo "<div class='panel panel-default'>
+                        <div class='panel-body'>$typ</div>
+                    </div>";
+                    }
+                    $dotaz->close();
+                    ?>
                     </div>
                 <h3>Slabiny</h3>
+                <?php
+                $dotaz = $spojeni->prepare("SELECT typy.typ FROM `typy` 
+                JOIN slabiny on slabiny.id_slabiny = typy.id
+                WHERE slabiny.id_pokemona = ?");
+                $dotaz->bind_param("i", $_GET["id"]);
+                $dotaz->bind_result($slabina);
+                $dotaz->execute();
+                ?>
                 <div id="slabiny">
-                        <div class="panel panel-default">
-                            <div class="panel-body">slabina 1</div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body">slabina 2</div>
-                        </div>
+                <?php
+                    while($dotaz->fetch()){ 
+                        echo "<div class='panel panel-default'>
+                        <div class='panel-body'>$slabina</div>
+                    </div>";
+                    }
+                    $dotaz->close();
+                    ?>
                     </div>
             </div>
         </article>

@@ -40,7 +40,7 @@
                 if ($jmeno==$_POST["jmeno"] && $heslo==md5($_POST["heslo"])){
                     $_SESSION["id"] = $id;
                     $_SESSION["jmeno"] = $jmeno;
-                    header("Location: http://visualstudio/Pokedex_Zotov-Merta/php/pokedex.php");
+                    header("Location: php/pokedex.php");
                 } else {
                     $hlaska = "Chyba: Zkontrolujte své údaje!";
                 }
