@@ -66,12 +66,12 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
             
             <div class="collapse" id="collapseTypy">
             <?php
-            $dotaz = $spojeni->prepare("SELECT typ FROM typy");
-                        $dotaz->bind_result($typ);
+            $dotaz = $spojeni->prepare("SELECT id, typ FROM typy");
+                        $dotaz->bind_result($id, $typ);
                         $dotaz->execute();
              while($dotaz->fetch()){ 
                  echo "<div class='card card-body'>
-                 $typ
+                 <a href='typy.php?id=$id'>$typ</a>
                </div>";
              }
              $dotaz->close();
@@ -91,7 +91,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                         $dotaz->execute();
              while($dotaz->fetch()){ 
                  echo "<div class='card card-body'>
-                 $typ
+                 <a href='slabiny.php?id=$id'>$typ</a>
                </div>";
              }
              $dotaz->close();
