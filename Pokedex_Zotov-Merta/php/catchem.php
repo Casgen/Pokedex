@@ -67,7 +67,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
             $dotaz->execute();
                 echo"<div class='flex-container'>";              
             while($dotaz->fetch()){      
-                echo "<div class='obrazky'><a href='catch.php?id=$id'><img class='obrPokemona' src='../images/$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+                echo "<div class='obrazky'><a href='catch.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev<br>Chytit</h3></a></div>";
             }
                 echo "</div>";
             $dotaz->close();
@@ -77,7 +77,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
-        echo "<div class='obrazky'><a href='catch.php?id=$id'><img class='obrPokemona' src='../images/$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+        echo "<div class='obrazky'><a href='catch.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev<br>Chytit</h3></a></div>";
             }
         echo "</div>";
         $dotaz->close();
