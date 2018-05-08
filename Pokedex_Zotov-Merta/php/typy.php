@@ -112,9 +112,25 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                 <form id="hledani" method="get">
                     <input type="submit" value="Vyhledat" style="height:40px;margin-right:30px;" class="btn btn-info">
                     <input style="width:60%;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required" title="">
+                    <input name="id" value="<?php echo $_GET["id"] ?>" hidden> 
                 </form>
         
-        <?php        
+        <?php
+        
+        if(isset($_GET["hledat"])){
+            $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek FROM pokemoni
+        JOIN pokemon_typ ON pokemoni.id = pokemon_typ.id_pokemona
+        WHERE pokemon_typ.id_typu = ? AND pokemoni.nazev LIKE '%$hledani%'");
+                        $dotaz->bind_param("i", $_GET["id"]);
+                        $dotaz->bind_result($id,$nazev,$obrazek);
+                        $dotaz->execute();
+        echo"<div class='flex-container'>";              
+        while($dotaz->fetch()){      
+        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+            }
+        echo "</div>";
+        $dotaz->close();
+        }else{     
         $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek FROM pokemoni
         JOIN pokemon_typ ON pokemoni.id = pokemon_typ.id_pokemona
         WHERE pokemon_typ.id_typu = ?");
@@ -127,6 +143,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
             }
         echo "</div>";
         $dotaz->close();
+        }
         ?>
         </article>
     </div>

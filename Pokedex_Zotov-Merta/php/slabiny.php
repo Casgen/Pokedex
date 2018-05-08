@@ -104,13 +104,34 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                 <a class="btn btn-secondary" href="pokedex.php" style="height:40px;margin:auto;" role="button">Zpátky</a>
                 <p id="pokemonHead" style="margin:auto;">Pokémoni</p>
             </div>
-            <div style="display:flex;flex-direction:row;">
-                <input type="submit" value="Vyhledat" style="height:40px;margin-left:auto;margin-right:auto;" class="btn btn-info">
-                <input style="width:60%;margin:auto;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="" id="input${1/(\w+)/\u\1/g}" class="form-control" value="" required="required" title="">
-            </div>
+            <?php
+                        if(isset($_GET["hledat"])){
+                           $hledani = $_GET["hledat"];
+                        }
+                ?>
+                <form id="hledani" method="get">
+                <input type="submit" value="Vyhledat" style="height:40px;margin-right:30px;" class="btn btn-info">
+                <input style="width:60%;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required" title="">
+                <input name="id" value="<?php echo $_GET["id"] ?>" hidden> 
+            </form>
         
-        <?php        
+        <?php  
+          
+        if(isset($_GET["hledat"])){    
         $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek FROM pokemoni
+        JOIN slabiny ON pokemoni.id = slabiny.id_pokemona
+        WHERE slabiny.id_slabiny = ? AND pokemoni.nazev LIKE '%$hledani%'");
+                        $dotaz->bind_param("i", $_GET["id"]);
+                        $dotaz->bind_result($id,$nazev,$obrazek);
+                        $dotaz->execute();
+        echo"<div class='flex-container'>";              
+        while($dotaz->fetch()){      
+        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+            }
+        echo "</div>";
+        $dotaz->close();
+        }else{
+            $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek FROM pokemoni
         JOIN slabiny ON pokemoni.id = slabiny.id_pokemona
         WHERE slabiny.id_slabiny = ?");
                         $dotaz->bind_param("i", $_GET["id"]);
@@ -122,6 +143,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
             }
         echo "</div>";
         $dotaz->close();
+        }
         ?>
         </article>
     </div>
