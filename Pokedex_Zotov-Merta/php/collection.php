@@ -57,11 +57,31 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
     <div id="zobrazeni">
         <article class="divy">
             <div style="display:flex;flex-direction:row;">
+            <?php
+            if(isset($_GET["hledat"])){
+               $hledani = $_GET["hledat"];
+            }
+            ?>
+            <form method="get">
                 <input type="submit" value="Vyhledat" style="height:40px;margin-left:auto;margin-right:auto;" class="btn btn-info">
-                <input style="width:60%;margin:auto;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="" id="input${1/(\w+)/\u\1/g}" class="form-control" value="" required="required" title="">
-            </div>
+                <input style="width:60%;margin:auto;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" value="" required="required" title="">
+            </form>
+        </div>
         
         <?php        
+        if(isset($_GET["hledat"])){
+            $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek from pokemoni
+                                        JOIN sbirka ON sbirka.pokemon_id = pokemoni.id
+                                        WHERE sbirka.uzivatel_id = ? AND pokemoni.nazev LIKE '%$hledani%'");
+            $dotaz->bind_param("i",$_SESSION["id"] );
+            $dotaz->bind_result($id, $nazev,$obrazek);
+            $dotaz->execute();
+                echo"<div class='flex-container'>";              
+            while($dotaz->fetch()){      
+                echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+            }
+                echo "</div>";
+        }else{
         $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek from pokemoni
                                     JOIN sbirka ON sbirka.pokemon_id = pokemoni.id
                                     WHERE sbirka.uzivatel_id = ?");
@@ -73,6 +93,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
         echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
             }
         echo "</div>";
+        }
         ?>
         </article>
     </div>

@@ -1,6 +1,6 @@
-
-<?php session_start() 
-
+<?php 
+session_start(); 
+if(isset($_SESSION["id"])) header("Location: php/pokedex.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
