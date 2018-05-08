@@ -142,3 +142,6 @@ div.card.card-body {
     padding: 6px;
     padding-left: 15px;
 }
+#usernavigate{
+    z-index: 1;
+}
