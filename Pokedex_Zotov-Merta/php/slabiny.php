@@ -100,7 +100,10 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
         
         </nav>
         <article class="divy">
-            <p id="pokemonHead">Pokémoni</p>
+            <div style="display:flex;flex-direction:row;margin-bottom:30px;">
+                <a class="btn btn-secondary" href="pokedex.php" style="height:40px;margin:auto;" role="button">Zpátky</a>
+                <p id="pokemonHead" style="margin:auto;">Pokémoni</p>
+            </div>
             <div style="display:flex;flex-direction:row;">
                 <input type="submit" value="Vyhledat" style="height:40px;margin-left:auto;margin-right:auto;" class="btn btn-info">
                 <input style="width:60%;margin:auto;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="" id="input${1/(\w+)/\u\1/g}" class="form-control" value="" required="required" title="">

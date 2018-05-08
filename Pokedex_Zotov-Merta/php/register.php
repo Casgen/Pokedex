@@ -22,7 +22,7 @@
                 $dotaz = $spojeni->prepare("INSERT INTO `uzivatele` (`ID`, `jmeno`, `heslo`) VALUES (NULL, ?, MD5(?))");
                 $dotaz->bind_param("ss",$_POST["jmeno"],$_POST["heslo"]);
                 if ($dotaz->execute()) {
-                    header("Location: http://localhost/Pokedex_Zotov-Merta/index.php?reg=1");
+                    header("Location: ../index.php?reg=1");
                 } else {
                     $hlaska = "Chyba: Toto jméno už existuje!";
                 }

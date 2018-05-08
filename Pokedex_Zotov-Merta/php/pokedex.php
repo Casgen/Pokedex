@@ -101,17 +101,15 @@ session_start();
         </nav>
         <article class="divy">
             <p id="pokemonHead">Pokémoni</p>
-            <div style="display:flex;flex-direction:row;">
                 <?php
                         if(isset($_GET["hledat"])){
                            $hledani = $_GET["hledat"];
                         }
                 ?>
-                <form method="get">
-                    <input type="submit" value="Vyhledat" style="height:40px;margin-left:auto;margin-right:auto;" class="btn btn-info">
-                    <input style="width:60%;margin:auto;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required" title="">
+                <form id="hledani" method="get">
+                    <input type="submit" value="Vyhledat" style="height:40px;margin-right:30px;" class="btn btn-info">
+                    <input style="width:60%;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required" title="">
                 </form>
-            </div>
         
         <?php 
         if(isset($_GET["hledat"])){

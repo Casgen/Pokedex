@@ -37,6 +37,17 @@ if(isset($_SESSION["id"])){
         $dotaz->close();
         ?>
 <body style="background-image: linear-gradient(90deg, rgb(247, 247, 247), rgb(208, 223, 255), rgb(247, 247, 247));">
+    <nav id="usernavigate" style="position:fixed" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <a class="navbar-brand" href="collection.php"><?php echo $_SESSION["jmeno"];?></a>
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="pokedex.php">Domů</a>
+            </li>
+            <li>
+                <a href="logout.php">Odhlásit se</a>
+            </li>
+        </ul>
+    </nav>
     <header><h1 id="nazevPokemona"><?php echo "$nazev";?></h1></header>
     <div style="display:flex;flex-direction:row;" id="prostredek">
         <article>

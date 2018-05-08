@@ -33,6 +33,18 @@ header {
     border-bottom: 10px solid black;
 }
 
+form {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn.btn-info {
+    margin-right: 30px;
+}
+
 #zobrazeni {
     display: flex;
     flex-direction: row;
