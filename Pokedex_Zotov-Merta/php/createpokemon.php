@@ -50,10 +50,12 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
     </header>
     <div id="zobrazeni">
         <article class="divy">
-        <?php
+        <?php    
+        $cil= '../images/'.$_FILES['obrazek']['name'];
+        move_uploaded_file($_FILES['obrazek']['tmp_name'],$cil);                         
         $dotaz=$spojeni->prepare("INSERT INTO pokemoni (nazev, popis, obrazek)
         VALUES (?, ?, ?)");
-            $dotaz->bind_param("sss",$_POST["nazev"], $_POST["popis"], $_POST["obrazek"]);
+            $dotaz->bind_param("sss",$_POST["nazev"], $_POST["popis"], $_FILES['obrazek']['name']);
              $dotaz->execute();
              $posledni_id = $spojeni->insert_id;
              $dotaz->close();
@@ -68,18 +70,18 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
               $dotaz->execute();
               $dotaz->close();
              ?>
-             <form method="post">
+             <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label style="margin:auto;">Název Pokémona</label>
                         <input type="text" style="margin:auto;width:40%;" pattern="[A-Za-z]+" maxlength="30" class="form-control" placeholder="Jméno pokémona..." name="nazev" id="" aria-describedby="helpId" placeholder=""><br>
                     </div>
                     <div class="form-group">
                         <label style="margin:auto;">Popis</label><br>
-                        <textarea style="width:70%;margin:auto;" pattern="[A-Za-z]+" placeholder="Zadejte svůj popis..." required maxlength="100" type="text" class="form-control" name="popis" id="" rows="3"></textarea>
+                        <textarea style="width:70%;margin:auto;" pattern="[A-Za-z]+" placeholder="Zadejte svůj popis..." required maxlength="550" type="text" class="form-control" name="popis" id="" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                       <label style="margin:auto;">Obrázek Pokémona</label>
-                      <input style="margin:auto;width:40%;" type="file" accept=".jpg,.png," class="form-control-file" name="obrazek" placeholder="" aria-describedby="fileHelpId">
+                      <input style="margin:auto;width:40%;" type="file" accept=".jpg,.png," class="form-control-file" name="obrazek" id="obrazek" placeholder="" aria-describedby="fileHelpId">
                     </div>
                     <div class="form-group">
                       <label style="margin:auto;">Typ Pokémona</label>
