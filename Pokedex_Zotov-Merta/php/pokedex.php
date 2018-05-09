@@ -26,7 +26,6 @@ session_start();
         if(isset($_SESSION["id"])){ 
         $jmeno= $_SESSION["jmeno"];
         }
-        $obrFile="../images/";
 ?>
 <body style="background-color:#7fad71">
     

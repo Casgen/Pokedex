@@ -28,7 +28,6 @@ if(isset($_SESSION["id"])){
 </head>
 <?php
         include 'server.php';
-        $obrFile="../images/";
         $dotaz = $spojeni->prepare("SELECT nazev, obrazek, popis FROM pokemoni WHERE pokemoni.id=?");
         $dotaz->bind_param("i", $_GET["id"]);
         $dotaz->bind_result($nazev, $obrazek, $popis);
