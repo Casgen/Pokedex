@@ -85,20 +85,20 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
              ?>
              <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label style="margin:auto;">Název Pokémona</label>
-                        <input type="text" style="margin:auto;width:40%;" pattern="[A-Za-z]+" maxlength="30" class="form-control" placeholder="Jméno pokémona..." name="nazev" id="" aria-describedby="helpId" placeholder=""><br>
+                        <label style="">Název Pokémona</label>
+                        <input type="text" style="" pattern="[A-Za-z]+" maxlength="30" class="form-control" placeholder="Jméno pokémona..." name="nazev" aria-describedby="helpId" placeholder=""><br>
                     </div>
                     <div class="form-group">
-                        <label style="margin:auto;">Popis</label><br>
-                        <textarea style="width:70%;margin:auto;" pattern="[A-Za-z]+" placeholder="Zadejte svůj popis..." required maxlength="550" type="text" class="form-control" name="popis" id="" rows="3"></textarea>
+                        <label style="">Popis</label><br>
+                        <textarea id="popis" style="" pattern="[A-Za-z]+" placeholder="Zadejte svůj popis..." required maxlength="550" type="text" class="form-control" name="popis" id="" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                      <label style="margin:auto;">Obrázek Pokémona</label>
-                      <input style="margin:auto;width:40%;" type="file" accept=".jpg,.png," class="form-control-file" name="obrazek" id="obrazek" placeholder="" aria-describedby="fileHelpId">
+                      <label style="">Obrázek Pokémona</label>
+                      <input type="file" accept=".jpg,.png," class="form-control-file" name="obrazek" id="obrazek" placeholder="" aria-describedby="fileHelpId">
                     </div>
                     <div class="form-group">
-                      <label style="margin:auto;">Typ Pokémona</label>
-                      <select style="width:50%;" multiple class="form-control select" required name="typ[]">
+                      <label style="">Typ Pokémona</label>
+                      <select style="" multiple class="form-control select" required name="typ[]">
                       <?php
             $dotaz = $spojeni->prepare("SELECT id,typ FROM typy");
                         $dotaz->bind_result($id, $typ);
@@ -111,8 +111,8 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                       </select>
                     </div>
                     <div class="form-group">
-                      <label style="margin:auto;">Slabost Pokémona</label>
-                      <select style="width:50%;" multiple class="form-control select" required name="slabost[]">
+                      <label style="">Slabost Pokémona</label>
+                      <select style="" multiple class="form-control select" required name="slabost[]">
                       <?php
             $dotaz = $spojeni->prepare("SELECT id, typ FROM typy");
                         $dotaz->bind_result($id, $typ);

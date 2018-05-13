@@ -107,8 +107,8 @@ session_start();
                         }
                 ?>
                 <form id="hledani" method="get">
-                    <input type="submit" value="Vyhledat" style="height:40px;margin-right:30px;" class="btn btn-info">
-                    <input style="width:60%;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required" title="">
+                    <input id="tlacitko"type="submit" value="Vyhledat" style="height:40px;" class="btn btn-info">
+                    <input type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required" title="">
                 </form>
         
         <?php 
@@ -118,7 +118,15 @@ session_start();
             $dotaz->execute();
                 echo"<div class='flex-container'>";              
             while($dotaz->fetch()){      
-                echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+                echo "<div class='obrazky'>
+                        <a href='detail.php?id=$id'>
+                            <img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'>
+                            <h3  class='nazevPokemona'>$nazev</h3>
+                        </a>
+                        <a href='smazat.php'>
+                            <div id='smazat'>Smazat</div>
+                        </a>
+                      </div>";
             }
                 echo "</div>";
             $dotaz->close();
@@ -128,7 +136,15 @@ session_start();
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
-        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+        echo "<div class='obrazky'>
+                <a href='detail.php?id=$id'>
+                    <img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'>
+                    <h3  class='nazevPokemona'>$nazev</h3>
+                </a>
+                <a href='smazat.php'>
+                    <div id='smazat'>Smazat</div>
+                </a>
+                </div>";
             }
         echo "</div>";
         $dotaz->close();
