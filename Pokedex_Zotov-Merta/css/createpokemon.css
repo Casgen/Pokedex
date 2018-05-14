@@ -32,6 +32,10 @@ header {
     background-repeat: no-repeat repeat;
 }
 
+#popis {
+    margin: 10px;
+}
+
 #zobrazeni {
     display: flex;
     flex-direction: row;
@@ -129,4 +133,36 @@ article {
 
 #tlacitko {
     margin: auto;
+}
+
+.form-group {
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media screen and (max-width:670px) {
+    .form-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    select {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%
+    }
+    input[type=text] {
+        width: 90%;
+    }
+    select.form-control.select {
+        width: 100%;
+    }
+    textarea {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:550px) {
+    #uvodtext {
+        font-size: 15vw;
+    }
 }

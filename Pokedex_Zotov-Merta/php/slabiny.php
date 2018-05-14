@@ -99,7 +99,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
         
         </nav>
         <article class="divy">
-            <div style="display:flex;flex-direction:row;margin-bottom:30px;">
+            <div id="zpatky" >
                 <a class="btn btn-secondary" href="pokedex.php" style="height:40px;margin:auto;" role="button">Zpátky</a>
                 <p id="pokemonHead" style="margin:auto;">Pokémoni</p>
             </div>
@@ -109,7 +109,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                         }
                 ?>
                 <form id="hledani" method="get">
-                <input type="submit" value="Vyhledat" style="height:40px;margin-right:30px;" class="btn btn-info">
+                <input id="tlacitko" type="submit" value="Vyhledat" style="height:40px;" class="btn btn-info">
                 <input style="width:60%;margin-bottom:40px;" type="search" placeholder="Hledej Pokemony..." name="hledat" id="input${1/(\w+)/\u\1/g}" class="form-control" required="required" title="">
                 <input name="id" value="<?php echo $_GET["id"] ?>" hidden> 
             </form>
@@ -125,7 +125,9 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
-        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='smazat.php'>
+              <div id='smazat'>Smazat</div>
+              </a></div>";
             }
         echo "</div>";
         $dotaz->close();
@@ -138,7 +140,9 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
-        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a></div>";
+        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='smazat.php'>
+              <div id='smazat'>Smazat</div>
+              </a></div>";
             }
         echo "</div>";
         $dotaz->close();

@@ -61,8 +61,8 @@ if(isset($_SESSION["id"])) header("Location: php/pokedex.php");
 
         <form method="post">
             <h1 id="prihlas">Login</h1><br>
-            <p style="color:black;text-decoration:underline;width:100%;text-align:center"><?php if (isset($hlaska)) {echo $hlaska;} ?></p>
-            <img class="icons" src="images/loginicon.svg" style="width:100%;height:35px;margin:auto;"><br>
+            <p style="color:black;text-decoration:underline;width:100%;text-align:center;<?php if (!isset($hlaska)) echo 'display:none'?>"><?php if (isset($hlaska)) {echo $hlaska;} ?></p>
+            <img class="icons" src="images/loginicon.svg" style="width:100%;height:35px;margin:auto;margin-top:20px;"><br>
             <input type="text" name="jmeno" maxlength="30" placeholder="Přezdívka" required><br>
             <img class="icons" src="images/keyicon.svg" style="width:100%;height:35px;margin:auto"><br>
             <input type="password" name="heslo" placeholder="Heslo" required><br>

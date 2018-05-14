@@ -53,8 +53,10 @@ div {
     color: rgb(255, 208, 0);
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
     font-family: pokeFont;
-    font-size: 2vw;
+    font-size: 3vw;
 }
 
 #logo {
@@ -69,13 +71,16 @@ div {
 #login {
     width: 25%;
     background-image: linear-gradient(45deg, rgba(211, 211, 211, 0.7), rgba(200, 200, 200, 0.7));
-    margin-left: 37.5%;
-    margin-right: 37.5%;
+    margin: auto;
     border-radius: 5px;
 }
 
 form {
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 10px;
     margin-bottom: 20px;
     width: 95%;
@@ -101,20 +106,15 @@ input[type=submit] {
 input[type=text] {
     border-radius: 3px;
     border: 1px solid grey;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5%;
-    margin-right: 5%;
     width: 90%;
+    margin: auto;
 }
 
 input[type=password] {
     border-radius: 3px;
     border: 1px solid grey;
     width: 90%;
-    margin-top: 5px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: auto;
 }
 
 label {
@@ -131,4 +131,37 @@ label {
 @font-face {
     font-family: pokeFont;
     src: url('../fonts/Pokemon/Pokemon Solid.ttf');
+}
+
+@media screen and (max-width:800px) {
+    #login {
+        width: 50%;
+        margin-top: 40px;
+    }
+    #prihlas {
+        font-size: 4vw;
+        margin-top: none;
+        margin-bottom: none;
+    }
+    #logo {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    #prihlas {
+        font-size: 6vw;
+    }
+}
+
+@media screen and (max-width:430px) {
+    #login {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:300px) {
+    #prihlas {
+        font-size: 8vw;
+    }
 }
