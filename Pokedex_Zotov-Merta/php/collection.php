@@ -69,30 +69,30 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
         
         <?php        
         if(isset($_GET["hledat"])){
-            $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek from pokemoni
+            $dotaz = $spojeni->prepare("SELECT sbirka.id, pokemoni.id, pokemoni.nazev, pokemoni.obrazek from pokemoni
                                         JOIN sbirka ON sbirka.pokemon_id = pokemoni.id
                                         WHERE sbirka.uzivatel_id = ? AND pokemoni.nazev LIKE '%$hledani%'");
             $dotaz->bind_param("i",$_SESSION["id"] );
-            $dotaz->bind_result($id, $nazev,$obrazek);
+            $dotaz->bind_result($sbirkaID,$id, $nazev, $obrazek);
             $dotaz->execute();
                 echo"<div class='flex-container'>";              
             while($dotaz->fetch()){      
                 echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='smazat.php'>
-                <div id='smazat'>Smazat</div>
+                <div id='smazat'><a href='delete.php?id=$sbirkaID'>Smazat</a></div>
                 </a></div>";
             }
                 echo "</div>";
         }else{
-        $dotaz = $spojeni->prepare("SELECT pokemoni.id, pokemoni.nazev, pokemoni.obrazek from pokemoni
+        $dotaz = $spojeni->prepare("SELECT sbirka.id, pokemoni.id, pokemoni.nazev, pokemoni.obrazek from pokemoni
                                     JOIN sbirka ON sbirka.pokemon_id = pokemoni.id
                                     WHERE sbirka.uzivatel_id = ?");
                         $dotaz->bind_param("i",$_SESSION["id"] );
-                        $dotaz->bind_result($id, $nazev,$obrazek);
+                        $dotaz->bind_result($sbirkaID, $id, $nazev, $obrazek);
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
         echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='smazat.php'>
-        <div id='smazat'>Smazat</div>
+        <div id='smazat'><a href='delete.php?id=$sbirkaID'>Smazat</a></div>
         </a></div>";
             }
         echo "</div>";
