@@ -23,7 +23,6 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
 <?php
         
         include 'server.php';
-        $obrFile="../images/";
         if(isset($_SESSION["id"])){ 
         $jmeno = $_SESSION["jmeno"];
         }
