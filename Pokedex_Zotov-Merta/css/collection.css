@@ -11,6 +11,18 @@ header {
     border-bottom: 10px solid black;
 }
 
+#smazat {
+    height: 30px;
+    width: 100%;
+    font-size: 20px;
+    background-color: rgb(255, 62, 62);
+    font-family: IBMPlesSansMed;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    margin: 0;
+}
+
 form {
     width: 80%;
     margin: auto;
@@ -76,6 +88,9 @@ footer {
     .nazevPokemona {
         font-size: 6vw;
     }
+    #smazat {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width:480px) {
@@ -98,6 +113,9 @@ footer {
     }
     #pokemonHead {
         font-size: 12vw;
+    }
+    #smazat {
+        font-size: 7vw;
     }
 }
 

@@ -77,8 +77,8 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
             $dotaz->execute();
                 echo"<div class='flex-container'>";              
             while($dotaz->fetch()){      
-                echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='smazat.php'>
-                <div id='smazat'><a href='delete.php?id=$sbirkaID'>Smazat</a></div>
+                echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='delete.php?id=$sbirkaID'>
+                <div id='smazat'>Smazat</div></a>
                 </a></div>";
             }
                 echo "</div>";
@@ -91,8 +91,8 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                         $dotaz->execute();
         echo"<div class='flex-container'>";              
         while($dotaz->fetch()){      
-        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='smazat.php'>
-        <div id='smazat'><a href='delete.php?id=$sbirkaID'>Smazat</a></div>
+        echo "<div class='obrazky'><a href='detail.php?id=$id'><img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'><h3  class='nazevPokemona'>$nazev</h3></a><a href='delete.php?id=$sbirkaID'>
+        <div id='smazat'>Smazat</div></a>
         </a></div>";
             }
         echo "</div>";

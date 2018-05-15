@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 //if(!isset($_SESSION["id"])) header("Location: ../index.php");
 ?>
@@ -122,9 +122,6 @@ session_start();
                             <img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'>
                             <h3  class='nazevPokemona'>$nazev</h3>
                         </a>
-                        <a href='smazat.php'>
-                            <div id='smazat'>Smazat</div>
-                        </a>
                       </div>";
             }
                 echo "</div>";
@@ -140,10 +137,7 @@ session_start();
                     <img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'>
                     <h3  class='nazevPokemona'>$nazev</h3>
                 </a>
-                <a href='smazat.php'>
-                    <div id='smazat'>Smazat</div>
-                </a>
-                </div>";
+              </div>";
             }
         echo "</div>";
         $dotaz->close();
