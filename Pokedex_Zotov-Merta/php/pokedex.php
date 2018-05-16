@@ -1,6 +1,6 @@
 ﻿<?php
 session_start();
-//if(!isset($_SESSION["id"])) header("Location: ../index.php");
+if(!isset($_SESSION["id"])) header("Location: ../index.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +25,7 @@ session_start();
         include 'server.php';
         if(isset($_SESSION["id"])){ 
         $jmeno= $_SESSION["jmeno"];
+        $admin= $_SESSION["admin"];
         }
 ?>
 <body style="background-color:#7fad71">
@@ -52,12 +53,17 @@ session_start();
         <nav class="divy" id="pokemonnavigate">
 
             <!--Vytvoření-->
-            <a href="createpokemon.php">
-                <button style="Width:100%;margin-bottom:10px;background-color:green;border:1px solid green;" class="btn btn-primary" type="button" aria-expanded="false" aria-controls="collapseExample">
+
+            <?php
+            
+            if($admin == 1) {
+            echo "<a href='createpokemon.php'>
+                <button style='Width:100%;margin-bottom:10px;background-color:green;border:1px solid green;' class='btn btn-primary' type='button' aria-expanded='false' aria-controls='collapseExample'>
                     Vytvoř si Pokémona!
                 </button>
-            </a>
-            
+            </a>";
+            }
+            ?>
             
             <!--typy-->
              <button style="Width:100%;margin-bottom:10px;background-color:rgb(0, 120, 255);border:1px solid rgb(0, 120, 255)"
@@ -121,7 +127,8 @@ session_start();
                         <a href='detail.php?id=$id'>
                             <img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'>
                             <h3  class='nazevPokemona'>$nazev</h3>
-                        </a>
+                        </a><a href='del.php?id=$id'>
+                        <div id='smazat'>Smazat</div></a>
                       </div>";
             }
                 echo "</div>";
@@ -136,8 +143,11 @@ session_start();
                 <a href='detail.php?id=$id'>
                     <img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'>
                     <h3  class='nazevPokemona'>$nazev</h3>
-                </a>
-              </div>";
+                </a>";
+                if($admin == 1){
+                    echo"<a href='del.php?id=$id'>
+                        <div id='smazat'>Smazat</div></a>";};
+        echo"</div>";
             }
         echo "</div>";
         $dotaz->close();

@@ -86,7 +86,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
              <form method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label >Název Pokémona</label>
-                        <input type="text"  pattern="[A-Za-z]+" maxlength="30" class="form-control" placeholder="Jméno pokémona..." name="nazev" aria-describedby="helpId" placeholder=""><br>
+                        <input type="text"  pattern="[A-Za-z\s]+" maxlength="30" class="form-control" placeholder="Jméno pokémona..." name="nazev" aria-describedby="helpId" placeholder=""><br>
                     </div>
                     <div class="form-group">
                         <label >Popis</label><br>

@@ -35,14 +35,15 @@ if(isset($_SESSION["id"])) header("Location: php/pokedex.php");
         if (isset($_POST["odeslat"])) {
             if (isset($_POST["heslo"]) && isset($_POST["jmeno"])) {
 
-                $dotaz = $spojeni->prepare("SELECT ID,jmeno,heslo FROM uzivatele WHERE jmeno=?");
+                $dotaz = $spojeni->prepare("SELECT ID,jmeno,heslo,uzivatele.admin FROM uzivatele WHERE jmeno=?");
                 $dotaz->bind_param("s",$_POST["jmeno"]);
-                $dotaz->bind_result($id,$jmeno,$heslo);
+                $dotaz->bind_result($id,$jmeno,$heslo,$admin);
                 $dotaz->execute();
                 $dotaz->fetch(); 
                 if ($jmeno==$_POST["jmeno"] && $heslo==md5($_POST["heslo"])){
                     $_SESSION["id"] = $id;
                     $_SESSION["jmeno"] = $jmeno;
+                    $_SESSION["admin"] = $admin;
                     header("Location: php/pokedex.php");
                 } else {
                     $hlaska = "Chyba: Zkontrolujte své údaje!";
