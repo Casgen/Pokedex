@@ -1,3 +1,14 @@
+#smazat {
+    height: 30px;
+    width: 100%;
+    font-size: 20px;
+    background-color: rgb(255, 62, 62);
+    font-family: IBMPlesSansMed;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    margin: 0;
+}
 h1 {
     color: rgb(255, 208, 0);
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
