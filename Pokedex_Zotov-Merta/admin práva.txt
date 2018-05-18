@@ -1,0 +1,3 @@
+pro získání admin práv
+jméno uživatele : admin
+heslo uživatele : admin
