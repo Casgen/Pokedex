@@ -25,6 +25,7 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
         include 'server.php';
         if(isset($_SESSION["id"])){ 
         $jmeno= $_SESSION["jmeno"];
+        $admin= $_SESSION["admin"];
         }
 ?>
 <body style="background-color:#7fad71">
@@ -52,11 +53,16 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
         <nav class="divy" id="pokemonnavigate">
 
             <!--Vytvoření-->
-            <a href="createpokemon.php">
-                <button style="Width:100%;margin-bottom:10px;background-color:green;border:1px solid green;" class="btn btn-primary" type="button" aria-expanded="false" aria-controls="collapseExample">
+            <?php
+            
+            if($admin == 1) {
+            echo "<a href='createpokemon.php'>
+                <button style='Width:100%;margin-bottom:10px;background-color:green;border:1px solid green;' class='btn btn-primary' type='button' aria-expanded='false' aria-controls='collapseExample'>
                     Vytvoř si Pokémona!
                 </button>
-            </a>
+            </a>";
+            }
+            ?>
             
             
             <!--typy-->

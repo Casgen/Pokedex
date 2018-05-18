@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["id"])) header("Location: ../index.php");
+if($_SESSION["admin"] != 1)header("Location: ../index.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

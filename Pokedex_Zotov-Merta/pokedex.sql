@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Úte 08. kvě 2018, 14:18
+-- Vytvořeno: Stř 16. kvě 2018, 10:01
 -- Verze serveru: 10.1.29-MariaDB
 -- Verze PHP: 7.2.0
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databáze: `pokemoni`
+-- Databáze: `pokedex`
 --
 
 -- --------------------------------------------------------
@@ -56,7 +56,8 @@ INSERT INTO `pokemoni` (`id`, `nazev`, `verze`, `popis`, `obrazek`) VALUES
 (13, 'Bellsprout', 2, 'Pokémon připomínající masožravou květinu. Stejně jako ona umí přijímat potravu jak kořínky, tak v podobě různého hmyzu který naláká do svého kalichu.\r\nNení ale vázán jen na jedno místo - dokáže vykořenit, a docela rychle se přesunout jinam. Miluje vlhko a teplo.', 'bellsprout.png'),
 (14, 'Snorlax', 1, 'Není na světě ospalejšího tvora. Snorlax miluje spánek nade vše. Pokud nespí, tak docela určitě jí, což je jeho druhá vášeň. Tento sympatický tvor\r\ndokáže sníst naprosto cokoliv - jakkoliv je to nechutné či dokonce jedovaté. Není divu že při svém způsobu života stále pěkně tloustne.\r\nAle pozor, nepodceňovat - i ve spánku se dokáže účinně bránit převalováním...', 'snorlax.png'),
 (15, 'Mewtwo', 2, 'Mewtwo je uměle vytvořený pokémon, výsledek mnoha let genetických experimentů vědců z Rumělkového města. Cílem bylo vytvořit pokémona naprosto dokonale\r\npřizpůsobeného pro boj s libovolným protivníkem - a to se také nakonec podařilo. Možná až příliš dobře. Mewtwo je agresivní a nepřátelský ke všemu živému.', 'mewtwo.png'),
-(52, 'Pichu', 0, 'Pichu je malý zemní hlodavec převážně barvy žluté v celé jeho postavě. Jeho kožešina je krátká, bledě žlutě zbarvená. Části jeho učí jsou černé, taktéž má dodatečné označení na svém krku a ocasu. Jeho ocas je ještě malý a krátký, podobný tak trochu jako Pikachu ocas, ale ještě ne tak vyvinutý. Má dva vaky jako líce, které jsou především růžové barvy, sloužící k účelu uskladnění elektřiny. Jeho nos je extrémně velmi malý, téměř viditelný jako bod. ', 'pichu.png');
+(52, 'Pichu', 0, 'Pichu je malý zemní hlodavec převážně barvy žluté v celé jeho postavě. Jeho kožešina je krátká, bledě žlutě zbarvená. Části jeho učí jsou černé, taktéž má dodatečné označení na svém krku a ocasu. Jeho ocas je ještě malý a krátký, podobný tak trochu jako Pikachu ocas, ale ještě ne tak vyvinutý. Má dva vaky jako líce, které jsou především růžové barvy, sloužící k účelu uskladnění elektřiny. Jeho nos je extrémně velmi malý, téměř viditelný jako bod. ', 'pichu.png'),
+(64, 'champion', 0, 'champa', 'photo.jpg');
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,10 @@ INSERT INTO `pokemon_typ` (`id`, `id_pokemona`, `id_typu`) VALUES
 (17, 13, 8),
 (18, 14, 1),
 (19, 15, 11),
-(55, 52, 4);
+(55, 52, 4),
+(82, 64, 1),
+(83, 64, 2),
+(84, 64, 3);
 
 -- --------------------------------------------------------
 
@@ -121,7 +125,9 @@ INSERT INTO `sbirka` (`id`, `pokemon_id`, `uzivatel_id`) VALUES
 (6, 5, 1),
 (7, 4, 1),
 (8, 2, 1),
-(9, 52, 1);
+(9, 52, 1),
+(10, 1, 1),
+(13, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -168,7 +174,9 @@ INSERT INTO `slabiny` (`id`, `id_pokemona`, `id_slabiny`) VALUES
 (27, 14, 7),
 (28, 15, 12),
 (29, 15, 14),
-(63, 52, 9);
+(63, 52, 9),
+(78, 64, 2),
+(79, 64, 3);
 
 -- --------------------------------------------------------
 
@@ -214,17 +222,20 @@ INSERT INTO `typy` (`id`, `typ`) VALUES
 CREATE TABLE `uzivatele` (
   `id` int(10) UNSIGNED NOT NULL,
   `jmeno` varchar(30) COLLATE utf8_czech_ci NOT NULL,
-  `heslo` char(32) COLLATE utf8_czech_ci NOT NULL
+  `heslo` char(32) COLLATE utf8_czech_ci NOT NULL,
+  `admin` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 --
 -- Vypisuji data pro tabulku `uzivatele`
 --
 
-INSERT INTO `uzivatele` (`id`, `jmeno`, `heslo`) VALUES
-(1, 'zbyndos', '5f4dcc3b5aa765d61d8327deb882cf99'),
-(2, 'vita', '5f4dcc3b5aa765d61d8327deb882cf99'),
-(3, 'johny', '5f4dcc3b5aa765d61d8327deb882cf99');
+INSERT INTO `uzivatele` (`id`, `jmeno`, `heslo`, `admin`) VALUES
+(1, 'zbyndos', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(2, 'vita', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(3, 'johny', '5f4dcc3b5aa765d61d8327deb882cf99', 0),
+(4, 'GrayWolf', '5f4dcc3b5aa765d61d8327deb882cf99', 0),
+(6, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);
 
 --
 -- Klíče pro exportované tabulky
@@ -279,25 +290,25 @@ ALTER TABLE `uzivatele`
 -- AUTO_INCREMENT pro tabulku `pokemoni`
 --
 ALTER TABLE `pokemoni`
-  MODIFY `id` int(200) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(200) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT pro tabulku `pokemon_typ`
 --
 ALTER TABLE `pokemon_typ`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT pro tabulku `sbirka`
 --
 ALTER TABLE `sbirka`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pro tabulku `slabiny`
 --
 ALTER TABLE `slabiny`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT pro tabulku `typy`
@@ -309,7 +320,7 @@ ALTER TABLE `typy`
 -- AUTO_INCREMENT pro tabulku `uzivatele`
 --
 ALTER TABLE `uzivatele`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
