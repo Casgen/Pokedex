@@ -1,3 +1,4 @@
-pro získání admin práv
-jméno uživatele : admin
-heslo uživatele : admin
+pro zï¿½skï¿½nï¿½ admin prï¿½v
+jmï¿½no uï¿½ivatele : admin
+heslo uï¿½ivatele : admin
+sdad
