@@ -1,4 +1,3 @@
 pro z�sk�n� admin pr�v
 jm�no u�ivatele : admin
 heslo u�ivatele : admin
-sdad
