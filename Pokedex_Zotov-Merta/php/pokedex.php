@@ -127,9 +127,11 @@ if(!isset($_SESSION["id"])) header("Location: ../index.php");
                         <a href='detail.php?id=$id'>
                             <img class='obrPokemona' src='$obrFile$obrazek' height='200px' width='200px'>
                             <h3  class='nazevPokemona'>$nazev</h3>
-                        </a><a href='del.php?id=$id'>
-                        <div id='smazat'>Smazat</div></a>
-                      </div>";
+                        </a><a href='del.php?id=$id'>";
+                        if($admin == 1){ 
+                        echo"<div id='smazat'>Smazat</div></a>";
+                        }
+                        echo"</div>";
             }
                 echo "</div>";
             $dotaz->close();
